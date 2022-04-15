@@ -23,7 +23,6 @@ y = torch.tensor([2, 0, 1])
 y_pred_good = torch.tensor([[.1, 1.0, 2.1], [2.0, 1.0, 0.1], [.1, 3.0, 0.1]])
 y_pred_bad = torch.tensor([[2.1, 1.0, 0.1], [.1, 1.0, 2.1], [.1, 3.0, 0.1]])
 
-
 l1 = loss(y_pred_good, y)
 l2 = loss(y_pred_bad, y)
 
