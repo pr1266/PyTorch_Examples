@@ -10,18 +10,21 @@ import numpy as np
 # TODO: inja migim ke device ro gpu dar nazar begir age available bood else: device = CPU
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-# Hyper-parameters 
-num_epochs = 5
-batch_size = 4
+num_epochs = 20
+batch_size = 16
 learning_rate = 0.001
 
-# dataset has PILImage images of range [0, 1]. 
-# We transform them to Tensors of normalized range [-1, 1]
+#! agha ! mige dataset ma, pixel value hash bein e 0 o 1 e
+#! vali ma miarim bein e -1 o 1 ke nemidoonam deldardesh chie
+#TODO inja oomadim 2 ta transform zadim
+#! 1 : be form tensor daravordim
+#! 2 : normal kardim bein e -1, 1
 transform = transforms.Compose(
     [transforms.ToTensor(),
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 # CIFAR10: 60000 32x32 color images in 10 classes, with 6000 images per class
+#! ridam too dataset et akhe 32*32?
 train_dataset = torchvision.datasets.CIFAR10(root='./data', train=True,
                                         download=True, transform=transform)
 
