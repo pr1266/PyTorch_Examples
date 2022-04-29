@@ -37,12 +37,20 @@ model_state_save_path = 'model_state.pth'
 torch.save(model.state_dict(), model_state_save_path)
 
 #! ye instance dige az model misazim : 
-model = Model(n_input_features=3)
+model2 = Model(n_input_features=3)
 
 #TODO inja loadesh mikonim:
 loaded_model = torch.load(model_save_path)
-print(f'Loaded Model : {type(loaded_model)}\n\n')
+print(f'Loaded Model : {loaded_model.parameters()}\n\n')
+for i, param in enumerate(loaded_model.parameters()):
+    print(''*2)
+    print(f'param {i} : \n')
+    print(f'parameter shape : {param.shape}')
+    print(f'parameter value : {param}')
+
+print('\n\n\n\n')
 
 #TODO inja state esho load mikonim:
-loaded_state_model = model.load_state_dict(torch.load(model_state_save_path))
-print(f'loaded state model : {type(loaded_state_model)}\n\n')
+loaded_state_model = Model(n_input_features=3)
+loaded_state_model.load_state_dict(torch.load(model_state_save_path))
+print(f'loaded state model : {loaded_state_model}\n\n')
