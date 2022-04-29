@@ -26,8 +26,8 @@ for i, param in enumerate(model.parameters()):
     print(f'parameter shape : {param.shape}')
     print(f'parameter value : {param}')
 
+print('\n\n\n\n')
 
-print(''*5)
 #! hala aval khode model ro save mikonim baad state dict ro:
 model_save_path = 'model.pth'
 torch.save(model, model_save_path)
@@ -41,6 +41,7 @@ model2 = Model(n_input_features=3)
 
 #TODO inja loadesh mikonim:
 loaded_model = torch.load(model_save_path)
+loaded_model.eval()
 print(f'Loaded Model : {loaded_model.parameters()}\n\n')
 for i, param in enumerate(loaded_model.parameters()):
     print(''*2)
@@ -51,6 +52,7 @@ for i, param in enumerate(loaded_model.parameters()):
 print('\n\n\n\n')
 
 #TODO inja state esho load mikonim:
-loaded_state_model = Model(n_input_features=3)
+device = torch.device('cuda')
+loaded_state_model = Model(n_input_features=3).to(device=device)
 loaded_state_model.load_state_dict(torch.load(model_state_save_path))
 print(f'loaded state model : {loaded_state_model}\n\n')
